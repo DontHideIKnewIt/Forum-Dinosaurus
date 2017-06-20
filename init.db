@@ -1,0 +1,17 @@
+import sqlite3
+
+conn = sqlite3.connect('database.db')
+print "Opened database successfully";
+
+conn.execute('CREATE TABLE thread (threadId INTEGER PRIMARY KEY AUTOINCREMENT,nama varchar(512) NOT NULL,post varchar(512) NOT NULL,userId int(12) NOT NULL)')
+print "Table created successfully";
+
+conn.execute('CREATE TABLE comment ( commentId INTEGER PRIMARY KEY AUTOINCREMENT, comm varchar(512) NOT NULL, userId int(12) NOT NULL, threadId int(12) NOT NULL)')
+print "Table created successfully";
+
+conn.execute('CREATE TABLE users ( userId INTEGER PRIMARY KEY AUTOINCREMENT, email varchar(128) NOT NULL, password varchar(512) NOT NULL )')
+print "Table created successfully";
+
+conn.execute ('insert into users values(1,"admin@susu.com","admin")')
+conn.execute ('insert into thread values(1,"zz","zzz","1")')
+conn.close()
