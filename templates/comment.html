@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>testing</title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    body{
+      background-image: url("https://dennysinnoh.files.wordpress.com/2015/07/yuki-kashiwagi-feet-1500331.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+li{
+float: right;
+}
+
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
+        <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+        {% if session.email %}
+        <li><a><font color="white"><marquee behavior="scroll" direction="left">{{ session.email }}</marquee></font></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('insert')}}"><span class="glyphicon glyphicon-heart"></span> Make New Thread</a></li>
+        {% else %}
+        <li><a href="{{url_for('register')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        
+      {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<center>
+<div class="container-fluid">
+<div class='row'>
+{% for row in rows %}
+<div class="col-sm-6 card">
+  <table>
+  <tr>
+      <th>Username</th>
+     <th>Comment</th>
+  </tr>
+  <tr>
+     <td><{{url_for('comment',id=row[0])}}>{{row[3]}}</td>
+     <td><{{url_for('home',id=row[0])}}>{{row[1]}}</td>         
+      </div>      
+       
+{% endfor %}
+</div>
+</div>
+
+</center>
+</body>
+
