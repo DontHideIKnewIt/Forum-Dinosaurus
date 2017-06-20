@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style type="text/css">
     body{
-      background-image: url("https://dennysinnoh.files.wordpress.com/2015/07/yuki-kashiwagi-feet-1500331.jpg");
+      background-image: url("https://images2.alphacoders.com/581/thumb-1920-58160.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -69,18 +69,23 @@ float: right;
 <center>
 <div class="container-fluid">
 <div class='row'>
-{% for row in rows %}
 <div class="col-sm-6 card">
-  <table>
+  <table class="table-hover">
   <tr>
       <th>Username</th>
      <th>Comment</th>
+{% for row in rows %}
+{% if session.id == 1 %}
+     <th></th>
+{% endif %}
   </tr>
   <tr>
-     <td><{{url_for('comment',id=row[0])}}>{{row[3]}}</td>
-     <td><{{url_for('home',id=row[0])}}>{{row[1]}}</td>         
+     <td><{{url_for('comment',id=row[0])}}>{{row[1]}}</td>
+     <td><{{url_for('home',id=row[0])}}>{{row[4]}}</td>
+     {% if session.id == 1 %}
+     <td><a href="{{url_for('deletecomm',commentId=row[0])}}" class="btn btn-danger">Delete</a></td>
+     {% endif %}         
       </div>      
-       
 {% endfor %}
 </div>
 </div>
