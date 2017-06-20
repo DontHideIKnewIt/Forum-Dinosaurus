@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style type="text/css">
     body{
-      background-image: url("https://dennysinnoh.files.wordpress.com/2015/07/yuki-kashiwagi-feet-1500331.jpg");
+      background-image: url("https://images2.alphacoders.com/581/thumb-1920-58160.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -33,14 +33,13 @@ tr:nth-child(even) {
 li{
 float: right;
 }
-#manipulate {
-    position:absolute;
-    width:300px;
-    height:300px;
-    bottom:0px;
-    right:25%;
-    left:50%;
-    margin-left:-150px;
+#manipulate
+{
+  position:absolute;
+  width:300px;
+  height:300px;
+  bottom:0px;
+  right:34%;
 }
   </style>
 </head>
@@ -57,11 +56,11 @@ float: right;
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+        <li class="active"><a href="{{url_for('home')}}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
         <li><a><font color="white"><marquee behavior="scroll" direction="left">{{ session.email }}</marquee></font></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        {% if session.email %}
+      {% if session.email %}
        <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-remove"></span> Logout</a></li>
         <li><a href="{{url_for('insert')}}"><span class="glyphicon glyphicon-heart"></span> Make New Thread</a></li>
         {% else %}
@@ -74,12 +73,12 @@ float: right;
 </nav>
 </div>
 <center>
-<div class="container-fluid">
+<div class="container-fluid" id="manipulate">
 <div class='row'>
 {% for row in rows %}
-<div class="col-sm-7 card" id="manipulate">
-  <table class="table table-condensed">
-  <tr class="success">
+<div class="col-sm-6 card">
+  <table class="table table-hover">
+  <tr class="active">
       <th>Thread Name</th>
      <th>Created by</th>
   </tr>
@@ -87,11 +86,11 @@ float: right;
      <td><a href="{{url_for('post',id=row[0])}}">{{row[1]}}</a></td>
      <td><a href="{{url_for('home',id=row[0])}}">{{row[3]}}</a></td>         
       </div>      
-       
+       </tr>
 {% endfor %}
 </div>
 </div>
 
 </center>
 </body>
-</html>
+</html>s
