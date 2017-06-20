@@ -109,7 +109,7 @@ def comment():
    con.row_factory = sql.Row
 
    cur = con.cursor()
-   cur.execute("SELECT * FROM comment")
+   cur.execute("SELECT * FROM users JOIN comment on users.userId = comment.userId")
    rows = cur.fetchall()
    con.close()
    return render_template('comment.html',rows=rows)
@@ -131,6 +131,29 @@ def add_comment(userid):
    con.close()
    return redirect(url_for('comment'))
 
+@app.route('/delete/<threadId>')
+def delete(threadId):
+   
+   con = sql.connect("database.db")
+   con.row_factory = sql.Row
+   cur = con.cursor()
+
+   cur.execute("DELETE FROM thread where threadId= ?", (threadId))
+   con.commit()
+   con.close()
+   return redirect(url_for('home'))
+
+@app.route('/deletecomm/<commentId>')
+def deletecomm(commentId):
+   
+   con = sql.connect("database.db")
+   con.row_factory = sql.Row
+   cur = con.cursor()
+
+   cur.execute("DELETE FROM comment where commentId= ?", (commentId))
+   con.commit()
+   con.close()
+   return redirect(url_for('comment'))
 
 
 if __name__ == '__main__':
